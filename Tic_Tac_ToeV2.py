@@ -20,7 +20,7 @@ if game_type=="1":
         print("- - -")
         print("- - -")
         
-        print("Karelerin koordinatlari aşağida verilmiştir.")
+        print("Karelerin koordinatlari aşağida verilmiştir..")
         print("A1 A2 A3")
         print("B1 B2 B3")
         print("C1 C2 C3")
