@@ -1,295 +1,238 @@
 import random
 
-A1="-"
-A2="-"
-A3="-"
-B1="-"
-B2="-"
-B3="-"
-C1="-"
-C2="-"
-C3="-"
+won=False
+
+
+coordA1="-"
+coordA2="-"
+coordA3="-"
+coordB1="-"
+coordB2="-"
+coordB3="-"
+coordC1="-"
+coordC2="-"
+coordC3="-"
+
+lineA=[coordA1,coordA2,coordA3]
+lineB=[coordB1,coordB2,coordB3]
+lineC=[coordC1,coordC2,coordC3]
+column1=[coordA1,coordB1,coordC1]
+column2=[coordA2,coordB2,coordC2]
+column3=[coordA3,coordB3,coordC3]
+cross1=[coordA1,coordB2,coordC3]
+cross2=[coordC1,coordB2,coordA3]
+
 coordinates=["A1","A2","A3","B1","B2","B3","C1","C2","C3"]
+
+def printBoard():
+
+    print(f"{coordinates[0]} {coordinates[1]} {coordinates[2]}")
+    print(f"{coordinates[3]} {coordinates[4]} {coordinates[5]}")
+    print(f"{coordinates[6]} {coordinates[7]} {coordinates[8]}")
+
+
+def setRandomCoordinates():
+    selectedCoordinate=random.choice(coordinates)
+    print(selectedCoordinate)
+    valueOfCoord=coordinates.index(selectedCoordinate)
+    print(valueOfCoord)
+    if not coordinates[valueOfCoord]==selectedCoordinate:
+        setRandomCoordinates()
+    else:
+        if selectedCoordinate=="A1":
+            A1="O"
+            coordinates[0]="O"
+            print(A1)
+        elif selectedCoordinate=="A2":
+            A2="O"
+            coordinates[1]="O"
+            print(A2)
+        elif selectedCoordinate=="A3":
+            A3="O"
+            coordinates[2]="O"
+            print(A3)
+        elif selectedCoordinate=="B1":
+            B1="O"
+            coordinates[3]="O"
+            print(B1)
+        elif selectedCoordinate=="B2":
+            B2="O"
+            coordinates[4]="O"
+            print(B2)
+        elif selectedCoordinate=="B3":
+            B3="O"
+            coordinates[5]="O"
+            print(B3)
+        elif selectedCoordinate=="C1":
+            C1="O"
+            coordinates[6]="O"
+            print(C1)
+        elif selectedCoordinate=="C2":
+            C2="O"
+            coordinates[7]="O"
+            print(C2)
+        elif selectedCoordinate=="C3":
+            C3="O"
+            coordinates[8]="O"
+            print(C3)
+    
+
+    
+def userChoice():
+    move=input("koordinat: ")
+    move=move.replace(' ','')
+    move=move.upper()
+    moveIndex=coordinates.index(move)
+    if not coordinates[moveIndex]==move:
+        userChoice()
+    else:
+        if move=="A1":
+            A1="X"
+            coordinates[0]="X"
+            print(A1)
+        elif move=="A2":
+            A2="X"
+            coordinates[1]="X"
+            print(A2)
+        elif move=="A3":
+            A3="X"
+            coordinates[2]="X"
+            print(A3)
+        elif move=="B1":
+            B1="X"
+            coordinates[3]="X"
+            print(B1)
+        elif move=="B2":
+            B2="X"
+            coordinates[4]="X"
+            print(B2)
+        elif move=="B3":
+            B3="X"
+            coordinates[5]="X"
+            print(B3)
+        elif move=="C1":
+            C1="X"
+            coordinates[6]="X"
+            print(C1)
+        elif move=="C2":
+            C2="X"
+            coordinates[7]="X"
+            print(C2)
+        elif move=="C3":
+            C3="X"
+            coordinates[8]="X"
+            print(C3)
+
+def winCheck():
+    if (coordA1 and coordA2 and coordA3)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    elif (coordA1 and coordB1 and coordC1)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    elif (coordA2 and coordB2 and coordC2)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    elif (coordA3 and coordB3 and coordC3)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    elif (coordB1 and coordB2 and coordB3)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    elif (coordC1 and coordC2 and coordC3)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    elif (coordA1 and coordB2 and coordC3)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    elif (coordA3 and coordB2 and coordC1)=="X":
+        print("X kazandi!")
+        
+        exit(0)
+    else:
+        if (coordA1 and coordA2 and coordA3)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        elif (coordA1 and coordB1 and coordC1)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        elif (coordA2 and coordB2 and coordC3)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        elif (coordA3 and coordB3 and coordC3)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        elif (coordB1 and coordB2 and coordB3)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        elif (coordC1 and coordC2 and coordC3)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        elif (coordA1 and coordB2 and coordC3)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        elif (coordA3 and coordB2 and coordC1)=="O":
+            print("O kazandi!")
+            
+            exit(0)
+        else:
+            pass
+
+
+
 
 game_type=input("Play with computer:1, Play with friends:2\n")
 if game_type=="1":
-    Beginning=input("X mi O mu olmak istersin?")
-    Beginning=Beginning.upper()
-    if Beginning=="X":
-        print("- - -")
-        print("- - -")
-        print("- - -")
-        
-        print("Karelerin koordinatlari aşağida verilmiştir.")
-        print("A1 A2 A3")
-        print("B1 B2 B3")
-        print("C1 C2 C3")
-        move1=input("koordinat: ")
-        move1=move1.replace(' ','')
-        move1=move1.upper()
-        
-        if move1=="A1":
-            A1="X"
-        elif move1=="A2":
-            A2="X"
-        elif move1=="A3":
-            A3="X"
-        elif move1=="B1":
-            B1="X"
-        elif move1=="B2":
-            B2="X"
-        elif move1=="B3":
-            B3="X"
-        elif move1=="C1":
-            C1="X"
-        elif move1=="C2":
-            C2="X"
-        elif move1=="C3":
-            C3="X"
-        
-        number1=random.randint(0,8)
-        coordinates.pop(number1)
-        
-        if number1==0:
-            if not A1=="X":
-                A1="O"
-        elif number1==1:
-            if not A2=="X":
-                A2="O"
-        elif number1==2:
-            if not A3=="X":
-                A3="O"
-        elif number1==3:
-            if not B1=="X":
-                B1="O"
-        elif number1==4:
-            if not B2=="X":
-                B2="O"
-        elif number1==5:
-            if not B3=="X":
-                B3="O"
-        elif number1==6:
-            if not C1=="X":
-                C1="O"
-        elif number1==7:
-            if not C2=="X":
-                C2="O"
-        elif number1==8:
-            if not C3=="X":
-                C3="O"
-        print(f"{A1} {A2} {A3}")
-        print(f"{B1} {B2} {B3}")
-        print(f"{C1} {C2} {C3}")
-
-        #--------------------------2-------------------------
-
-        move2=input("koordinat: ")
-        move2=move2.replace(' ','')
-        move2=move2.upper()
-        
-        if move2=="A1":
-            A1="X"
-        elif move2=="A2":
-            A2="X"
-        elif move2=="A3":
-            A3="X"
-        elif move2=="B1":
-            B1="X"
-        elif move2=="B2":
-            B2="X"
-        elif move2=="B3":
-            B3="X"
-        elif move2=="C1":
-            C1="X"
-        elif move2=="C2":
-            C2="X"
-        elif move2=="C3":
-            C3="X"
-        
-        number2=random.randint(0,8)
-        coordinates.pop(number2)
-        
-        if number2==0:
-            if not A1=="X":
-                A1="O"
-        elif number2==1:
-            if not A2=="X":
-                A2="O"
-        elif number2==2:
-            if not A3=="X":
-                A3="O"
-        elif number2==3:
-            if not B1=="X":
-                B1="O"
-        elif number2==4:
-            if not B2=="X":
-                B2="O"
-        elif number2==5:
-            if not B3=="X":
-                B3="O"
-        elif number2==6:
-            if not C1=="X":
-                C1="O"
-        elif number2==7:
-            if not C2=="X":
-                C2="O"
-        elif number2==8:
-            if not C3=="X":
-                C3="O"
-        print(f"{A1} {A2} {A3}")
-        print(f"{B1} {B2} {B3}")
-        print(f"{C1} {C2} {C3}")
-        
-#--------------------------3-------------------------
-
-        move3=input("koordinat: ")
-        move3=move3.replace(' ','')
-        move3=move3.upper()
-        
-        if move3=="A1":
-            A1="X"
-        elif move3=="A2":
-            A2="X"
-        elif move3=="A3":
-            A3="X"
-        elif move3=="B1":
-            B1="X"
-        elif move3=="B2":
-            B2="X"
-        elif move3=="B3":
-            B3="X"
-        elif move3=="C1":
-            C1="X"
-        elif move3=="C2":
-            C2="X"
-        elif move3=="C3":
-            C3="X"
-        
-        number3=random.randint(0,8)
-        coordinates.pop(number3)
-        
-        if number3==0:
-            if not A1=="X":
-                A1="O"
-        elif number3==1:
-            if not A2=="X":
-                A2="O"
-        elif number3==2:
-            if not A3=="X":
-                A3="O"
-        elif number3==3:
-            if not B1=="X":
-                B1="O"
-        elif number3==4:
-            if not B2=="X":
-                B2="O"
-        elif number3==5:
-            if not B3=="X":
-                B3="O"
-        elif number3==6:
-            if not C1=="X":
-                C1="O"
-        elif number3==7:
-            if not C2=="X":
-                C2="O"
-        elif number3==8:
-            if not C3=="X":
-                C3="O"
-        print(f"{A1} {A2} {A3}")
-        print(f"{B1} {B2} {B3}")
-        print(f"{C1} {C2} {C3}")
-        
-        
-        
-        #------------------------4------------------
-        move4=input("koordinat: ")
-        move4=move4.replace(' ','')
-        move4=move4.upper()
-        if move4=="A1":
-            A1="X"
-        elif move4=="A2":
-            A2="X"
-        elif move4=="A3":
-            A3="X"
-        elif move4=="B1":
-            B1="X"
-        elif move4=="B2":
-            B2="X"
-        elif move4=="B3":
-            B3="X"
-        elif move4=="C1":
-            C1="X"
-        elif move4=="C2":
-            C2="X"
-        elif move4=="C3":
-            C3="X"
-        number4=random.randint(0,8)
-        coordinates.pop(number4)
-        if number4==0:
-            if not A1=="X":
-                A1="O"
-        elif number4==1:
-            if not A2=="X":
-                A2="O"
-        elif number4==2:
-            if not A3=="X":
-                A3="O"
-        elif number4==3:
-            if not B1=="X":
-                B1="O"
-        elif number4==4:
-            if not B2=="X":
-                B2="O"
-        elif number4==5:
-            if not B3=="X":
-                B3="O"
-        elif number4==6:
-            if not C1=="X":
-                C1="O"
-        elif number4==7:
-            if not C2=="X":
-                C2="O"
-        elif number4==8:
-            if not C3=="X":
-                C3="O"
-        print(f"{A1} {A2} {A3}")
-        print(f"{B1} {B2} {B3}")
-        print(f"{C1} {C2} {C3}")
-        if (A1 and A2 and A3)=="X":
-            print("X kazandi!")
-        elif (A1 and B1 and C1)=="X":
-            print("X kazandi!")
-        elif (A2 and B2 and C2)=="X":
-            print("X kazandi!")
-        elif (A3 and B3 and C3)=="X":
-            print("X kazandi!")
-        elif (B1 and B2 and B3)=="X":
-            print("X kazandi!")
-        elif (C1 and C2 and C3)=="X":
-            print("X kazandi!")
-        elif (A1 and B2 and C3)=="X":
-            print("X kazandi!")
-        elif (A3 and B2 and C1)=="X":
-            print("X kazandi!")
-        else:
-            if (A1 and A2 and A3)=="O":
-                print("O kazandi!")
-            elif (A1 and B1 and C1)=="O":
-                print("O kazandi!")
-            elif (A2 and B2 and C3)=="O":
-                print("O kazandi!")
-            elif (A3 and B3 and C3)=="O":
-                print("O kazandi!")
-            elif (B1 and B2 and B3)=="O":
-                print("O kazandi!")
-            elif (C1 and C2 and C3)=="O":
-                print("O kazandi!")
-            elif (A1 and B2 and C3)=="O":
-                print("O kazandi!")
-            elif (A3 and B2 and C1)=="O":
-                print("O kazandi!")
-            else:
-                pass
+    
+    print("- - -")
+    print("- - -")
+    print("- - -")
+    
+    print("Karelerin koordinatlari aşağida verilmiştir.")
+    print("A1 A2 A3")
+    print("B1 B2 B3")
+    print("C1 C2 C3")
+    
+    userChoice()
+    
+    setRandomCoordinates()
+    
+    printBoard()
+    
+    #--------------------------2-------------------------
+    userChoice()
+    setRandomCoordinates()
+    
+    printBoard()
+    
+#-------------------------3-------------------------
+    userChoice()
+    setRandomCoordinates()
+    printBoard()
+    
+    winCheck()
+    if not won==True:
+        while not won==True:
+            userChoice()
+            setRandomCoordinates()
+            printBoard()
+            winCheck()
+    else:
+        exit(0)
 
         
         
@@ -370,3 +313,7 @@ elif game_type=="2":
                 pass
         else:
             pass
+    
+
+
+#recursion fonksiyonları (recursive)
